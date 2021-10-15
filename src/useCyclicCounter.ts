@@ -1,20 +1,20 @@
 import { useState } from "react";
 
-interface CyclicNumberHook {
+interface CyclicCounterHook {
   val: number;
   inc: (num?: number) => void;
   dec: (num?: number) => void;
   set: (newState: number) => void;
 }
 
-interface CyclicNumberState {
+interface CyclicCounterState {
   val?: number;
   upperBound: number;
 }
 
-export const useCyclicNumber = (
-  initialState: CyclicNumberState
-): CyclicNumberHook => {
+export const useCyclicCounter = (
+  initialState: CyclicCounterState
+): CyclicCounterHook => {
   const [state, setState] = useState<number>(initialState.val || 0);
 
   const inc = (num: number = 1) => {

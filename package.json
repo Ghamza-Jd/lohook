@@ -19,7 +19,7 @@
   "types": "lib",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p ./src",
+    "build": "tsc -p .",
     "test": "jest"
   },
   "dependencies": {

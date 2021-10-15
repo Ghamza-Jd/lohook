@@ -1,2 +1,3 @@
 export { useBool } from "./useBool";
-export { useNumber } from "./useNumber";
+export { useCounter } from "./useCounter";
+export { useCyclicCounter } from "./useCyclicCounter";

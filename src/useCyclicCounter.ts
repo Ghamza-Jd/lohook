@@ -7,21 +7,25 @@ interface CyclicCounterHook {
   set: (newState: number) => void;
 }
 
-interface CyclicCounterState {
-  val?: number;
+interface CyclicCounterOptions {
   upperBound: number;
+  step?: number;
+  val?: number;
 }
 
 export const useCyclicCounter = (
-  initialState: CyclicCounterState
+  initialState: CyclicCounterOptions
 ): CyclicCounterHook => {
-  const [state, setState] = useState<number>(initialState.val || 0);
+  const val = initialState.val || 0;
+  const step = initialState.step || 1;
 
-  const inc = (num: number = 1) => {
+  const [state, setState] = useState<number>(val);
+
+  const inc = (num: number = step) => {
     setState((state + num) % initialState.upperBound);
   };
 
-  const dec = (num: number = 1) => {
+  const dec = (num: number = step) => {
     setState((state - num) % initialState.upperBound);
   };
 

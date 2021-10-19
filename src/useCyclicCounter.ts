@@ -26,7 +26,8 @@ export const useCyclicCounter = (
   };
 
   const dec = (num: number = step) => {
-    setState((state - num) % initialState.upperBound);
+    const newState = (state - num) % initialState.upperBound;
+    setState(newState > 0 ? newState : initialState.upperBound - 1);
   };
 
   const set = (newState: number) => {

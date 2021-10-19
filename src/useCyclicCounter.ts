@@ -16,16 +16,15 @@ interface CyclicCounterOptions {
 export const useCyclicCounter = (
   initialState: CyclicCounterOptions
 ): CyclicCounterHook => {
-  const val = initialState.val || 0;
-  const step = initialState.step || 1;
+  const iState: CyclicCounterOptions = { val: 0, step: 1, ...initialState };
 
-  const [state, setState] = useState<number>(val);
+  const [state, setState] = useState<number>(iState.val!);
 
-  const inc = (num: number = step) => {
+  const inc = (num: number = iState.step!) => {
     setState((state + num) % initialState.upperBound);
   };
 
-  const dec = (num: number = step) => {
+  const dec = (num: number = iState.step!) => {
     const newState = (state - num) % initialState.upperBound;
     setState(newState > 0 ? newState : initialState.upperBound - 1);
   };
